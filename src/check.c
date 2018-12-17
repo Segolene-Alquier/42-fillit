@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/17 17:14:43 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:30:14 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	ft_grid_validity(int fd)
 	while (grid[i])
 	{
 		nb_line = 0;
-		while (grid[i] && *grid[i] != '\n' && nb_line < 4)
+		while (grid[i] && *grid[i] != '\0' && nb_line < 4)
 		{
 			if (ft_strlen_strchr(grid[i]) != 4)
 				exit (EXIT_FAILURE);
 			nb_line++;
 			i++;
 		}
-		if (grid[i] && nb_line != 4)
+		if (grid[i] && (nb_line != 4 || *grid[i] == '\0'))
 			exit(EXIT_FAILURE);
 		i++;
 	}
