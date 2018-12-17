@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/17 17:55:48 by salquier         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:19:55 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ int	ft_grid_validity(int fd)
 		{
 			if (ft_strlen_strchr(grid[i]) != 4)
 				exit (EXIT_FAILURE);
-			printf("grid[%d] : %c\n", i, *grid[i]);
 			nb_line++;
 			i++;
 		}
-		printf("nb line : %d\n", nb_line);
-		if (grid[i] && (nb_line != 4 || (*grid[i] == '\0' && !grid[i + 1])))
+		if (nb_line != 4 || (grid[i] && ((!grid[i + 1]) || (*grid[i] != '\0'))))
 			exit(EXIT_FAILURE);
 		i++;
 	}
