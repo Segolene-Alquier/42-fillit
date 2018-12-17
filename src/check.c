@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/17 17:06:08 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:14:43 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_strlen_strchr(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '#' || str[i] != '.')
+		if (str[i] != '#' && str[i] != '.')
 			exit(EXIT_FAILURE);
 		i++;
 	}
@@ -68,4 +68,3 @@ int	ft_grid_validity(int fd)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
-
