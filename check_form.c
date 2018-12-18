@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 18:25:25 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/18 18:59:05 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/18 19:11:50 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ int ft_check_fill(char **grid)
 				lm[1] = j;
 			else if (grid[i][j] == '#')
 				ft_add_value(&form[k++], lm[0] - i, lm[1] - j);
-
 }
