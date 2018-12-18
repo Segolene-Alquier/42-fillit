@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/18 13:23:29 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/18 17:03:05 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_strlen_strchr(char *str, int *count)
 			(*count)++;
 		i++;
 	}
-		return (i);
+	return (i);
 }
 
 void	ft_store_grid(int fd ,char **grid)
@@ -34,11 +34,14 @@ void	ft_store_grid(int fd ,char **grid)
 	int ret;
 
 	ret = 1;
-	i = -1;
-	while (++i < 129 && ret > 0)
-		ret = get_next_line(fd, &grid[i]);
-	if (ret == 0 && i <= 129)
+	i = 0;
+	while ((ret = get_next_line(fd, &grid[i])) > 0 && i <= 129)
+		i++;
+	if (ret == 0 && i <= 129 && i > 0)
+	{
+		free(grid[i]);
 		grid[i] = 0;
+	}
 	else
 		exit(EXIT_FAILURE);
 }
@@ -63,9 +66,12 @@ int	ft_grid_validity(int fd)
 			nb_line++;
 			i++;
 		}
-		if (nb_hash != 4 || nb_line != 4 || (grid[i] && ((!grid[i + 1]) || (*grid[i] != '\0'))))
+		if (nb_hash != 4 || nb_line != 4
+			|| (grid[i] && ((!grid[i + 1]) || (*grid[i] != '\0'))))
 			exit(EXIT_FAILURE);
-		i++;
+		nb_hash = 0;
+		if (grid[i])
+			i++;
 	}
 	exit(EXIT_SUCCESS);
 	return (0);
