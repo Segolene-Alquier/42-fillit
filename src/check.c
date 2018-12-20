@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/20 14:06:01 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/20 14:54:29 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	ft_store_grid(int fd ,char **grid)
 		exit(EXIT_FAILURE);
 }
 
-int	ft_grid_validity(int fd, t_shape **begin)
+void	ft_grid_validity(int fd, t_shape **begin)
 {
 	char		*grid[130];
 	t_grid		nb;
@@ -140,8 +140,4 @@ int	ft_grid_validity(int fd, t_shape **begin)
 		if ((nb.hash = 0) == 0 && grid[nb.i])
 			nb.i++;
 	}
-	printf("lst size : %d\n", ft_lst_size(begin));
-	ft_print_list(begin);
-	exit(EXIT_SUCCESS);
-	return (0);
 }

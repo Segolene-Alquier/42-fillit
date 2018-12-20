@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 11:20:57 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/20 14:07:23 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/20 14:14:05 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	ft_print_list(t_shape **lst)
 	while (elem)
 	{
 		printf("%d %d\n%d %d\n%d %d\n%d %d\n", elem->form[0][0], elem->form[0][1], elem->form[1][0], elem->form[1][1], elem->form[2][0], elem->form[2][1], elem->form[3][0], elem->form[3][1]);
-		printf("elem->letter : %c\n\n", elem->letter);
+		printf("elem->letter : %c\n", elem->letter);
+		printf("elem->height : %d\n", elem->height);
+		printf("elem->width : %d\n\n", elem->width);
 		elem = elem->next;
 	}
 }
@@ -55,8 +57,8 @@ t_shape *ft_new(char shape[4][2],  t_grid *nb)
 		ft_add_value(new->form, shape[i][0], shape[i][1], i);
 		i++;
 	}
-	new->height = nb->max_y - nb->min_y;
-	new->width = nb->max_x - nb->min_x;
+	new->height = nb->max_y - nb->min_y + 1;
+	new->width = nb->max_x - nb->min_x + 1;
 	new->next = NULL;
 	return (new);
 }

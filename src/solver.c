@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 15:16:56 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/20 14:53:42 by bafraiki         ###   ########.fr       */
+/*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
+/*   Updated: 2018/12/20 14:53:55 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+# include "fillit.h"
 
-int main(int argc, char **argv)
+int		size_square(t_shape **lst, int boolean)
 {
-	int		fd;
-	t_shape *begin;
+	int		height;
+	int		width;
+	t_shape	*elem;
 
-	if (argc != 2)
+	if (boolean)	// min
+		return (ft_power_2(ft_lst_size(lst) * 4));
+	else			// max
 	{
-		write(1, "usage: ./fillit name_of_file\n", 50);
-		return (1);
+		elem = *lst;
+		height = 0;
+		width = 0;
+		while (elem)
+		{
+			height += elem->height;
+			width += elem->width;
+			elem = elem->next;
+		}
+		if (height > width)
+			return (height);
+		return (width);
 	}
-	if (!((fd = open(argv[1], O_RDONLY)) > 0))
-		return (1);
-	ft_grid_validity(fd, &begin);
-	printf("%d\n", size_square(&begin, 0));
-	printf("%d\n", size_square(&begin, 1));
-
-	return (0);
 }
