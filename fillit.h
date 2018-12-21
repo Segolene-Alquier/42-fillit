@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:14:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/20 14:54:51 by bafraiki         ###   ########.fr       */
+/*   Updated: 2018/12/21 19:48:27 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void				ft_print_list(t_shape **lst);
 int					ft_lst_size(t_shape **lst);
 int					ft_power_2(int nb);
 int					size_square(t_shape **lst, int boolean);
-
+char				**generate_big_grid(t_shape **begin);
+int					place_piece(char **grid, t_shape **lst, int size);
 #endif
