@@ -6,20 +6,11 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/21 19:53:00 by salquier         ###   ########.fr       */
+/*   Updated: 2018/12/21 20:20:47 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fillit.h"
-
-/*
- * Comment placer une piece ?
- * j'essaie de placer elem->form[i][0] + form[i][1] sur la case grid[i0][j1] 
- * si grid[i0][i1] < 0, j'essaie de placer elem->form[i][0] + form[i][1] sur la case grid[i0][j++1]
- * si j'arrive a placer elem->form[3][1], je remplace les cases de grid par elem->letter
- *
- *
- */
 
 void	ft_print_grid(char **grid, t_shape **lst)
 {
@@ -55,10 +46,10 @@ int		place_piece(char **grid, t_shape **lst, int size)
 	int		y;
 	t_shape *elem;
 
-	i = 0;
-	j = 0;
-	x = 0;
-	y = 0;
+	i = 0;		// index des coordonnees de mon tableau
+	j = 0;		// 
+	x = 0;		// ligne de la grille
+	y = 0;		// colonne de la grille
 	elem = *lst;
 	while (i < 4 && x <= size && (y + j) <= size)
 	{
