@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2018/12/21 21:35:42 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/04 14:23:44 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,6 @@ int		size_square(t_shape **lst, int boolean)
 	}
 }
 
-int		ft_increment(int size, int mode, char *tab)
-{
-	int i;
-
-	i = 0;
-	if (mode == 1)
-		while (tab[++i] != '.' && tab[i] != '\0')
-	else if (mode == 2)
-}
-
-
 /* si madame a reussi a placer elle m'envoit 1 je lui envoit la prochaine lettre
  * sinon elle me dit d'incrementer
+ */

@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 12:40:38 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/04 15:46:10 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,43 @@ void	ft_print_grid(char **grid, t_shape **lst)
 		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
 	}
+	printf("grid[%d] : %s\n", i, grid[i]);
+
 }
 
-int		erase(char **grid, t_shape **lst)
+void		erase(int undex, int deudex, char **grid, t_shape *lst, int nb_piece)
 {
-	int		k;
-	t_shape	*elem;
+	int x;
+	int y;
+	int i;
 
-	elem = *lst;
-	k = 0;
-	while (k < size_square(&elem, 1))
-		ft_memset(grid[k++], '.', size_square(&elem, 1));
-	return (0);
+	i = 0;
+	x = lst->form[nb_piece - 1][0];
+	y = lst->form[nb_piece - 1][1];
+	undex -= x;
+	deudex -= y;
+	while (i < nb_piece)
+	{
+		x = lst->form[i][0];
+		y = lst->form[i][1];
+		grid[undex + x][deudex + y] = '.';
+		i++;
+	}
 }
 
-int		place_piece(char **grid, t_shape **lst, int size)
+int		place_piece(char **grid, t_shape *elem, int size)
 {
 	int nb_piece;
 	int i;
 	int j;
 	int x;
 	int y;
-	t_shape *elem;
 
-	nb_piece = 0;
 	i = 0;
-	elem = *lst;
-
-	while(i <= size && (j = 0) == 0)
+	nb_piece = 0;
+	while(nb_piece != 4 && i <= size && (j = 0) == 0)
 	{
-		while (j < size)
+		while (nb_piece != 4 && j < size && (nb_piece = 0)== 0)
 		{
 			if (grid[i][j] == '.')
 				while (nb_piece < 4)
@@ -62,15 +69,23 @@ int		place_piece(char **grid, t_shape **lst, int size)
 					y = elem->form[nb_piece][1];
 					if (grid[i + x][j + y] == '.' && i + x >= 0 && i + x < size && j + y >= 0 && j + y < size)
 					{
-					grid[i + x][j + y] = elem->letter;
-					nb_piece++;
+						grid[i + x][j + y] = elem->letter;
+						nb_piece++;
 					}
 					else
-					//remove nb_piece elements
+					{
+						erase(i, j, grid, elem, nb_piece);
+						nb_piece = 5;
+					}
 				}
+			j++;
 		}
+		i++;
 	}
-	//rejet
+	ft_print_grid(grid, &elem);
+	if (nb_piece == 4)
+		return (1);
+	return (0);
 }
 
 /*
@@ -115,6 +130,7 @@ char	**generate_big_grid(t_shape **begin)
 	char	**grid;
 	t_shape *elem;
 
+	i = 0;
 	elem = *begin;
 	grid = (char **)malloc(sizeof(char *) * size_square(&elem, 0));
 	while (i < size_square(&elem, 0))
@@ -124,5 +140,6 @@ char	**generate_big_grid(t_shape **begin)
 		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
 	}
+	printf("===============\n");
 	return (grid);
 }
