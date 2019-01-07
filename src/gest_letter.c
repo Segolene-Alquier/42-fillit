@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 17:06:29 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 20:17:06 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ void		find_erase(t_grid *bgrid)
 				erase(i, j, bgrid, 4);
 }
 
+void	ft_print(t_letter *begin)
+{
+	t_letter *elem;
+
+	elem = begin;
+	while (elem)
+	{
+		printf("%c", elem->letter);
+		elem = elem->next;
+	}
+}
+
 char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
 {
 	char letter;
@@ -76,13 +88,19 @@ char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
 			return (give_me_a_letter(index - 1, tab, head, bgrid));
 		}
 		tab[index] = '.';
+		(bgrid->size)++;
+		bgrid->ret = 1;
 		return (-1);
 	}
 	else if (place_piece(bgrid, bgrid->rejet))
+	{
+		bgrid->ret = 1;
 		return (index);
+	}
 	else
 		return (give_me_a_letter(index, tab, head, bgrid));
 }
+
 /*
    int main(int argc, char *argv[])
    {
@@ -115,5 +133,4 @@ char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
    printf("\n");
 
    return 0;
-   }
-   */
+   }*/
