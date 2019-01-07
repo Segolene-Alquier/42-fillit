@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 16:01:27 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:20:10 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ int		place_piece(char **grid, t_shape *elem, int size)
 
 	i = 0;
 	nb_piece = 0;
+	printf("size: %d\n", size);
 	while(nb_piece != 4 && i <= size && (j = 0) == 0)
 	{
-		while (nb_piece != 4 && j < size && (nb_piece = 0)== 0)
+		while (nb_piece != 4 && j < size && (nb_piece = 0) == 0)
 		{
 			if (grid[i][j] == '.')
 				while (nb_piece < 4)
@@ -74,6 +75,7 @@ int		place_piece(char **grid, t_shape *elem, int size)
 					}
 					else
 					{
+						printf("%d\n", nb_piece);
 						erase(i, j, grid, elem, nb_piece);
 						nb_piece = 5;
 					}
@@ -88,42 +90,6 @@ int		place_piece(char **grid, t_shape *elem, int size)
 	return (0);
 }
 
-/*
-   int		place_piece(char **grid, t_shape **lst, int size)
-   {
-   int		i;
-   int		j;
-   int		x;
-   int		y;
-   t_shape *elem;
-
-   i = 0;		// index des coordonnees de mon tableau
-   j = 0;		// 
-   x = 0;		// ligne de la grille
-   y = 0;		// colonne de la grille
-   elem = *lst;
-   while (i < 4 && x <= size && (y + j) <= size)
-   {
-   x = elem->form[i][0];
-   y = elem->form[i][1];
-   if (grid[x][y + j] == '.' && x >= 0 && (y + j >= 0))
-   {
-   grid[x][y + j] = elem->letter;
-   i++;
-   }
-   else
-   {
-   i = erase(grid, &elem);
-   j++;
-   }
-   if (x == (size - 1) && (y + j) == (size - 1))
-   return (0);
-   }
-   printf("------- ////////// ----------\n");
-   ft_print_grid(grid, &elem);
-   return (1);
-   }
-   */
 char	**generate_big_grid(t_shape **begin)
 {
 	int		i;
