@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:14:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 16:00:59 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:08:24 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ int					place_piece(char **grid, t_shape *elem, int size);
 t_letter			*ft_new_letter(char c);
 void				add_new_letter(t_letter **begin, char c);
 char				remove_letter(t_letter **begin, char c);
-
+void				ft_build_utils(char *tab, t_letter **begin, int size);
+char				give_me_a_letter(int index, char *tab, t_letter **begin, char rejet);
+t_shape				*find_elem(t_shape *begin, int nb);
+void				ft_print_grid(char **grid, t_shape **lst);
+void				fillit_baby(char **big_grid, t_shape *begin, int size);
 #endif
