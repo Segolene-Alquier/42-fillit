@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 16:08:56 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:06:29 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,55 +59,61 @@ char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
 		remove_letter(head, tab[index]);
 		return (index);
 	}
-	add_new_letter(head, bgrid->rejet->letter);
-	letter = there_is_highest(*head, tab[index]);
-	if (tab[index] < letter)
+	else if (bgrid->rejet->xgrid == -1 && bgrid->rejet->ygrid == -1)
 	{
-		remove_letter(head, letter);
-		tab[index] = letter;
-		return (index);
-	}
-	else if (index > 0)
-	{
+		add_new_letter(head, bgrid->rejet->letter);
+		letter = there_is_highest(*head, tab[index]);
+		if (tab[index] < letter)
+		{
+			remove_letter(head, letter);
+			tab[index] = letter;
+			return (index);
+		}
+		else if (index > 0)
+		{
+			tab[index] = '.';
+			bgrid->rejet = find_elem(bgrid->begin, tab[index - 1]);
+			return (give_me_a_letter(index - 1, tab, head, bgrid));
+		}
 		tab[index] = '.';
-		bgrid->rejet = find_elem(bgrid->begin, tab[index - 1]);
-		find_erase(bgrid);
-		return (give_me_a_letter(index - 1, tab, head, bgrid));
+		return (-1);
 	}
-	tab[index] = '.';
-	return (-1);
+	else if (place_piece(bgrid, bgrid->rejet))
+		return (index);
+	else
+		return (give_me_a_letter(index, tab, head, bgrid));
 }
 /*
-int main(int argc, char *argv[])
-{
-	t_letter *begin;
-	char *tab;
+   int main(int argc, char *argv[])
+   {
+   t_letter *begin;
+   char *tab;
 
-	tab = (char*)malloc(3);
-	ft_build_utils(tab, &begin, 3);
-	ft_print(begin);
-	printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
-	printf("\n");
-	give_me_a_letter(0, tab, &begin, 0);
-	give_me_a_letter(0, tab, &begin, 'A');
-	ft_print(begin);
-	printf("\n");
-	
-	printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
-	give_me_a_letter(1, tab, &begin, 0);
-	printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
-	give_me_a_letter(1, tab, &begin, 'A');
-	give_me_a_letter(1, tab, &begin, 'C');
-	give_me_a_letter(1, tab, &begin, 0);
-	give_me_a_letter(2, tab, &begin, 0);
-	give_me_a_letter(2, tab, &begin, 'B');
-	give_me_a_letter(2, tab, &begin, 0);
-	int a = give_me_a_letter(2, tab, &begin, 'A');
-	printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
-	printf("%d\n",a);
-	ft_print(begin);
-	printf("\n");
+   tab = (char*)malloc(3);
+   ft_build_utils(tab, &begin, 3);
+   ft_print(begin);
+   printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
+   printf("\n");
+   give_me_a_letter(0, tab, &begin, 0);
+   give_me_a_letter(0, tab, &begin, 'A');
+   ft_print(begin);
+   printf("\n");
 
-	return 0;
-}
-*/
+   printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
+   give_me_a_letter(1, tab, &begin, 0);
+   printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
+   give_me_a_letter(1, tab, &begin, 'A');
+   give_me_a_letter(1, tab, &begin, 'C');
+   give_me_a_letter(1, tab, &begin, 0);
+   give_me_a_letter(2, tab, &begin, 0);
+   give_me_a_letter(2, tab, &begin, 'B');
+   give_me_a_letter(2, tab, &begin, 0);
+   int a = give_me_a_letter(2, tab, &begin, 'A');
+   printf("%c %c %c\n", *tab, *(tab + 1), *(tab + 2));
+   printf("%d\n",a);
+   ft_print(begin);
+   printf("\n");
+
+   return 0;
+   }
+   */

@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 16:09:37 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:05:37 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,10 @@ void		erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
 	int i;
 
 	i = 0;
-	x = bgrid->rejet->form[nb_piece - 1][0];
-	y = bgrid->rejet->form[nb_piece - 1][1];
-	system("clear");
+system("clear");
 	printf("%d %d\n",undex, deudex);
 	ft_print_grid(bgrid->grid, bgrid->size);
 	usleep(100000);
-	undex -= x;
-	deudex -= y;
 	while (i < nb_piece)
 	{
 	x = bgrid->rejet->form[i][0];
@@ -62,12 +58,21 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 	int x;
 	int y;
 
-	i = 0;
+
+	if (elem->xgrid == -1)
+	{
+		elem->xgrid = 0;
+		elem->ygrid = 0;
+	}
+	else
+		erase(elem->xgrid, elem->ygrid, bgrid, 4);
+	i = elem->xgrid;
 	nb_piece = 0;
 	printf("size: %d\n", bgrid->size);
 	bgrid->rejet = elem;
-	while(nb_piece != 4 && i < bgrid->size && (j = 0) == 0)
+	while(nb_piece != 4 && i < bgrid->size)
 	{
+		j = (i > elem->xgrid) ? 0 : elem->ygrid;
 		while (nb_piece != 4 && j < bgrid->size && (nb_piece = 0) == 0)
 		{
 			if (bgrid->grid[i][j] == '.')
@@ -93,7 +98,7 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 							x = elem->form[nb_piece - 1][0];
 							y = elem->form[nb_piece - 1][1];
 						}
-						erase(i + x, j + y, bgrid, nb_piece);
+						erase(i - x, j - y, bgrid, nb_piece);
 						nb_piece = 5;
 					}
 				}
@@ -106,6 +111,8 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 		bgrid->rejet = NULL;
 		return (1);
 	}
+	elem->xgrid = -1;
+	elem->ygrid = -1;
 	return (0);
 }
 
