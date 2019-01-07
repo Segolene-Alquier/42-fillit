@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 15:10:31 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 17:40:41 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/07 10:56:22 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,22 @@ void	add_new_letter(t_letter **begin, char c)
 		return ;
 	}
 	elem = *begin;
-	while (elem->next && elem->letter <= c)
+	while (elem->next && elem->next->letter <= c)
 		if (elem->letter == c || elem->next->letter == c) //not especially necessary but for dev we must be prudent
 			return ;
 		else
 			elem = elem->next;
-	if (elem->next)
+	if (elem->letter < c)  // if elem->next is null is this problematic ? 
 	{
 		tmp = elem->next;
 		elem->next = ft_new_letter(c);
 		elem->next->next = tmp;
 	}
-	else
-		elem->next = ft_new_letter(c);
+	else if ((*begin)->letter > c)
+	{
+		*begin = ft_new_letter(c);
+		(*begin)->next = elem;
+	}
 }
 
 char	remove_letter(t_letter **begin, char c)
@@ -75,5 +78,3 @@ char	remove_letter(t_letter **begin, char c)
 	}
 	return (c);
 }
-
-
