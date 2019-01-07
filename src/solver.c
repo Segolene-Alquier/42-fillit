@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 17:22:21 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:18:09 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,48 @@ int		size_square(t_shape **lst, int boolean)
 	}
 }
 
+void	ft_print(t_letter *begin)
+{
+	t_letter *elem;
+
+	elem = begin;
+	while (elem)
+	{
+		printf("%c ", elem->letter);
+		elem = elem->next;
+	}
+}
+
 void	fillit_baby(char **big_grid, t_shape *begin, int size)
 {
 	int index;
+	int ret;
 	char *tab;
 	t_letter *head;
 
 	head = NULL;
 	if (!(tab = (char *)malloc(sizeof(char) * (size + 1))))
 		return ;
-	printf("size : %d\n", size);
 	ft_build_utils(tab, &head, size);
-	printf("coucou\n");
-	index = 0;
-	while (index < size)
+	index = -1;
+	ret = 1;
+	while (index <= size - 1 || ret == 0)
 	{
-		index = give_me_a_letter(index, tab, &head, 0);
-		place_piece(big_grid, find_elem(begin, tab[index]), size_square(&begin, 1));
+		if (ret)
+		{
 		index++;
+		if (index <= size - 1)
+		{
+		index = give_me_a_letter(index, tab, &head, 0);
+		ret = place_piece(big_grid, find_elem(begin, tab[index]), size_square(&begin, 1));
+		}
+		}
+		else
+		{
+		index = give_me_a_letter(index, tab, &head, tab[index]);
+		ret = place_piece(big_grid, find_elem(begin, tab[index]), size_square(&begin, 1));
+		}
+		sleep(1);
 	}
 	ft_print_grid(big_grid, &begin);
 }

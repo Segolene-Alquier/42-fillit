@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:56 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/04 17:20:05 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/07 11:46:54 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	head = NULL;
 	if (argc != 2)
 	{
-		write(1, "usage: ./fillit name_of_file\n", 50);
+		write(1, "usage: ./fillit name_of_file\n", 25);
 		return (1);
 	}
 	if (!((fd = open(argv[1], O_RDONLY)) > 0))
