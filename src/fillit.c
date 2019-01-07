@@ -6,20 +6,18 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 12:20:10 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 13:45:48 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fillit.h"
 
-void	ft_print_grid(char **grid, t_shape **lst)
+void	ft_print_grid(char **grid, int size)
 {
 	int i;
-	t_shape *elem;
 
-	elem = *lst;
 	i = 0;
-	while (i < size_square(&elem, 1))
+	while (i < size)
 	{
 		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
@@ -28,7 +26,7 @@ void	ft_print_grid(char **grid, t_shape **lst)
 
 }
 
-void		erase(int undex, int deudex, char **grid, t_shape *lst, int nb_piece)
+void		erase(int undex, int deudex, char **grid, t_shape *lst, int nb_piece, int size)
 {
 	int x;
 	int y;
@@ -37,6 +35,10 @@ void		erase(int undex, int deudex, char **grid, t_shape *lst, int nb_piece)
 	i = 0;
 	x = lst->form[nb_piece - 1][0];
 	y = lst->form[nb_piece - 1][1];
+	system("clear");
+	printf("%d %d\n",undex, deudex);
+	ft_print_grid(grid, size);
+	usleep(1000000);
 	undex -= x;
 	deudex -= y;
 	while (i < nb_piece)
@@ -44,6 +46,10 @@ void		erase(int undex, int deudex, char **grid, t_shape *lst, int nb_piece)
 		x = lst->form[i][0];
 		y = lst->form[i][1];
 		grid[undex + x][deudex + y] = '.';
+		system("clear");
+		printf("%d %d\n",undex, deudex);
+		ft_print_grid(grid, size);
+		usleep(1000000);
 		i++;
 	}
 }
@@ -59,7 +65,7 @@ int		place_piece(char **grid, t_shape *elem, int size)
 	i = 0;
 	nb_piece = 0;
 	printf("size: %d\n", size);
-	while(nb_piece != 4 && i <= size && (j = 0) == 0)
+	while(nb_piece != 4 && i < size && (j = 0) == 0)
 	{
 		while (nb_piece != 4 && j < size && (nb_piece = 0) == 0)
 		{
@@ -70,13 +76,23 @@ int		place_piece(char **grid, t_shape *elem, int size)
 					y = elem->form[nb_piece][1];
 					if (grid[i + x][j + y] == '.' && i + x >= 0 && i + x < size && j + y >= 0 && j + y < size)
 					{
+						printf("%d %d\n", i + x, j + y);
 						grid[i + x][j + y] = elem->letter;
 						nb_piece++;
+						system("clear");
+						printf("\n");
+						ft_print_grid(grid, size);
+						usleep(500000);
+
 					}
 					else
 					{
-						printf("%d\n", nb_piece);
-						erase(i, j, grid, elem, nb_piece);
+						if (nb_piece >= 0)
+						{
+							x = elem->form[nb_piece - 1][0];
+							y = elem->form[nb_piece - 1][1];
+						}
+						erase(i + x, j + y, grid, elem, nb_piece, size);
 						nb_piece = 5;
 					}
 				}
@@ -84,7 +100,6 @@ int		place_piece(char **grid, t_shape *elem, int size)
 		}
 		i++;
 	}
-	ft_print_grid(grid, &elem);
 	if (nb_piece == 4)
 		return (1);
 	return (0);

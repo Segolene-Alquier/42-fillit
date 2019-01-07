@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:14:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 11:06:40 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 13:53:28 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct		s_shape {
 	struct s_shape	*next;
 }					t_shape;
 
+
+
 void				ft_grid_validity(int fd, t_shape **begin);
 void				ft_add_value(char form[4][2], int i, int j, int k);
 int					ft_cmp(int a, int b);
@@ -60,6 +62,6 @@ void				fillit_baby(char **big_grid, t_shape *begin, int size);
 void				ft_build_utils(char *tab, t_letter **begin, int size);
 t_shape				*find_elem(t_shape *begin, int nb);
 char				give_me_a_letter(int index, char *tab, t_letter **begin, char rejet);
-void				ft_print_grid(char **grid, t_shape **lst);
+void				ft_print_grid(char **grid, int size);
 
 #endif

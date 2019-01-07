@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 12:18:09 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/07 13:25:39 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,4 @@ void	fillit_baby(char **big_grid, t_shape *begin, int size)
 		}
 		sleep(1);
 	}
-	ft_print_grid(big_grid, &begin);
 }
