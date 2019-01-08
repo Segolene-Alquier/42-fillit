@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:14:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 19:49:29 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:28:05 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "get_next_line.h"
+# include "libft/includes/libft.h"
 
 typedef struct 		s_check {
 	int				i;
@@ -53,6 +54,7 @@ typedef struct		s_grid {
 
 
 void				ft_print(t_letter *begin);
+void				error();
 int					place_piece(t_grid *bgrid, t_shape *elem);
 void				erase(int undex, int deudex, t_grid *bgrid, int nb_piece);
 char				give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid);
