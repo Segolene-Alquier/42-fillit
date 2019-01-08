@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 16:51:25 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:25:35 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,35 +56,25 @@ int		ft_init_pl_p(int *i, int *j, t_shape *elem, t_grid *bgrid)
 	return (1);
 }
 
-int		try_piece(t_grid *bgrid, int i, int j)
+int		try_piece(t_grid *bgrid, int i, int j, int nb_piece)
 {
-	int nb_piece;
 	int y;
 	int x;
 
-	nb_piece = 0;
-	while (nb_piece < 4)
+	x = bgrid->rejet->form[nb_piece][0] + i;
+	y = bgrid->rejet->form[nb_piece][1] + j;
+	if (bgrid->grid[x][y] == '.' && x >= 0 && x < bgrid->size && y >= 0 && y < bgrid->size)
 	{
-		x = bgrid->rejet->form[nb_piece][0];
-		y = bgrid->rejet->form[nb_piece][1];
-		if (bgrid->grid[i + x][j + y] == '.' && i + x >= 0 && i + x < bgrid->size && j + y >= 0 && j + y < bgrid->size)
-		{
-			bgrid->grid[i + x][j + y] = bgrid->rejet->letter;
-			nb_piece++;
-		}
-		else
-		{
-			if (nb_piece >= 0)
-			{
-				x = bgrid->rejet->form[nb_piece - 1][0];
-				y = bgrid->rejet->form[nb_piece - 1][1];
-			}
-			erase(i, j, bgrid, nb_piece);
-			nb_piece = 5;
-		}
-		if (nb_piece == 4)
-			bgrid->rejet = NULL;
+		bgrid->grid[x][y] = bgrid->rejet->letter;
+		nb_piece++;
 	}
+	else
+	{
+		erase(i, j, bgrid, nb_piece);
+		return (5);
+	}
+	if (nb_piece == 4)
+		bgrid->rejet = NULL;
 	return (nb_piece);
 }
 
@@ -103,7 +93,8 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 		while (nb_piece != 4 && j < bgrid->size && (nb_piece = 0) == 0)
 		{
 			if (bgrid->grid[i][j] == '.')
-				nb_piece = try_piece(bgrid, i, j);
+				while (nb_piece < 4)
+					nb_piece = try_piece(bgrid, i, j, nb_piece);
 			j++;
 		}
 		i++;
