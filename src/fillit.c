@@ -6,13 +6,13 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 17:25:35 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:29:47 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
+void	erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
 {
 	int x;
 	int y;
@@ -63,7 +63,8 @@ int		try_piece(t_grid *bgrid, int i, int j, int nb_piece)
 
 	x = bgrid->rejet->form[nb_piece][0] + i;
 	y = bgrid->rejet->form[nb_piece][1] + j;
-	if (bgrid->grid[x][y] == '.' && x >= 0 && x < bgrid->size && y >= 0 && y < bgrid->size)
+	if (bgrid->grid[x][y] == '.' && x >= 0 && x < bgrid->size
+			&& y >= 0 && y < bgrid->size)
 	{
 		bgrid->grid[x][y] = bgrid->rejet->letter;
 		nb_piece++;
