@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 20:18:06 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 13:45:48 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ int		size_square(t_shape **lst, int boolean)
 	int		height;
 	int		width;
 	t_shape	*elem;
-	int result;
+	int		result;
 
 	elem = *lst;
-	if (!boolean)			// max
+	if (!boolean && height = 0 == 0)
 	{
-		height = 0;
 		width = 0;
 		while (elem)
 		{
@@ -34,15 +33,12 @@ int		size_square(t_shape **lst, int boolean)
 			return (height);
 		return (width);
 	}
-	else					// min
-	{
-		result = ft_power_2(ft_lst_size(lst) * 4);
-		if (result >= elem->height && result >= elem->width)
-			return (result);
-		if (elem->height > elem->width)
-			return (elem->height);
-		return (elem->width);
-	}
+	result = ft_power_2(ft_lst_size(lst) * 4);
+	if (result >= elem->height && result >= elem->width)
+		return (result);
+	if (elem->height > elem->width)
+		return (elem->height);
+	return (elem->width);
 }
 
 void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
@@ -72,7 +68,7 @@ void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 		{
 			index = give_me_a_letter(index, tab, &head, bgrid);
 			if (bgrid->ret == 0)
-			bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
+				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
 		}
 	}
 }
