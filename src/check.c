@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 14:31:29 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:04:09 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_strlen_strchr(char *str, int *count)
 	while (str[i])
 	{
 		if (str[i] != '#' && str[i] != '.')
-			exit(EXIT_FAILURE);
+			error();
 		if (str[i] == '#')
 			(*count)++;
 		i++;
@@ -48,7 +48,7 @@ int		follow_pcs(char form[4][2], int i, int *min, int *max)
 	j = -1;
 	while (++j < 3)
 		if (tmp[j + 1] - tmp[j] > 1)
-			exit (EXIT_FAILURE);
+			error();
 	return (1);
 }
 
@@ -72,7 +72,7 @@ int		adjacent_pcs(char tab[4][2])
 					min = t;
 			}
 		if (min > 1)
-			exit(EXIT_FAILURE);
+			error();
 		i++;
 	}
 	return (1);
@@ -113,7 +113,7 @@ void	ft_store_grid(int fd ,char **grid)
 		grid[i] = 0;
 	}
 	else
-		exit(EXIT_FAILURE);
+		error();
 }
 
 void	ft_grid_validity(int fd, t_shape **begin)
@@ -131,17 +131,13 @@ void	ft_grid_validity(int fd, t_shape **begin)
 		nb.hash = 0;
 		while (grid[nb.i] && *grid[nb.i] != '\0' && nb.line++ < 4)
 			if (ft_strlen_strchr(grid[nb.i++], &(nb.hash)) != 4)
-				exit (EXIT_FAILURE);
+				error();
 		if (nb.hash != 4 || nb.line != 4
 				|| (grid[nb.i] && ((!grid[nb.i + 1]) || (*grid[nb.i] != '\0'))))
-			exit(EXIT_FAILURE);
+			error();
 		ft_check_fill(&grid[nb.i - 4], form);
 		if (!((follow_pcs(form, 0, &(nb.min_y), &(nb.max_y)) && follow_pcs(form, 1, &(nb.min_x), &(nb.max_x)) && adjacent_pcs(form))))
-			exit(EXIT_FAILURE);
-//		printf("max_x : %d\n", nb.max_x);
-//		printf("max_y : %d\n", nb.max_y);
-//		printf("min_x : %d\n", nb.min_x);
-//		printf("min_y : %d\n", nb.min_y);
+			error();
 		ft_add_end(begin, ft_new(form, &nb));
 		if ((nb.hash = 0) == 0 && grid[nb.i])
 			nb.i++;
