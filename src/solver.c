@@ -6,11 +6,11 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 13:45:48 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 13:52:17 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fillit.h"
+#include "fillit.h"
 
 int		size_square(t_shape **lst, int boolean)
 {
@@ -20,7 +20,7 @@ int		size_square(t_shape **lst, int boolean)
 	int		result;
 
 	elem = *lst;
-	if (!boolean && height = 0 == 0)
+	if (!boolean && (height = 0) == 0)
 	{
 		width = 0;
 		while (elem)
@@ -43,13 +43,13 @@ int		size_square(t_shape **lst, int boolean)
 
 void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 {
-	int index;
-	char *tab;
-	t_letter *head;
+	int			index;
+	char		*tab;
+	t_letter	*head;
 
 	head = NULL;
 	if (!(tab = (char *)malloc(sizeof(char) * (size_l + 1))))
-		return ;
+		exit(EXIT_FAILURE);
 	ft_build_utils(tab, &head, size_l);
 	index = -1;
 	bgrid->ret = 1;
@@ -64,11 +64,8 @@ void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
 			}
 		}
-		else
-		{
-			index = give_me_a_letter(index, tab, &head, bgrid);
+		else if ((index = give_me_a_letter(index, tab, &head, bgrid)) > -2)
 			if (bgrid->ret == 0)
 				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
-		}
 	}
 }
