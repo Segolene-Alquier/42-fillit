@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 16:32:22 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 15:25:48 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:47:13 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_add_value(char form[4][2], int i, int j, int k)
 	form[k][1] = j;
 }
 
-int	ft_cmp(int a, int b)
+int		ft_cmp(int a, int b)
 {
 	if (b < a)
 		return (a - b);

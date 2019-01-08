@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 11:20:57 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 16:35:02 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:46:11 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		ft_lst_size(t_shape **lst)
 {
-	int size;
-	t_shape *elem;
+	int		size;
+	t_shape	*elem;
 
 	size = 0;
 	elem = *lst;
 	if (!(lst))
-		size  = 0;
+		size = 0;
 	while (elem)
 	{
 		size++;
@@ -29,10 +29,10 @@ int		ft_lst_size(t_shape **lst)
 	return (size);
 }
 
-t_shape *ft_new(char shape[4][2],  t_check *nb)
+t_shape	*ft_new(char shape[4][2], t_check *nb)
 {
 	t_shape *new;
-	int i;
+	int		i;
 
 	i = 0;
 	if ((new = (t_shape*)malloc(sizeof(t_shape))) == NULL)
@@ -75,39 +75,10 @@ void	ft_add_end(t_shape **lst, t_shape *new)
 	}
 }
 
-t_shape	*ft_find_elem(t_shape **lst, char c)
-{
-	t_shape *elem;
-
-	elem = *lst;
-	while (elem)
-	{
-		if (elem->letter == c)
-			return (elem);
-		elem = elem->next;
-	}
-	return (NULL);
-}
-
 t_shape	*find_elem(t_shape *begin, int nb)
 {
 	nb = (nb - 'A') + 1;
 	while (nb-- > 1)
 		begin = begin->next;
 	return (begin);
-}
-
-void	ft_print_list(t_shape **lst)
-{
-	t_shape *elem;
-
-	elem = *lst;
-	while (elem)
-	{
-		printf("%d %d\n%d %d\n%d %d\n%d %d\n", elem->form[0][0], elem->form[0][1], elem->form[1][0], elem->form[1][1], elem->form[2][0], elem->form[2][1], elem->form[3][0], elem->form[3][1]);
-		printf("elem->letter : %c\n", elem->letter);
-		printf("elem->height : %d\n", elem->height);
-		printf("elem->width : %d\n\n", elem->width);
-		elem = elem->next;
-	}
 }
