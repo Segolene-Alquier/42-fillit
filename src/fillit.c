@@ -6,11 +6,11 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 14:00:32 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:03:19 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fillit.h"
+#include "fillit.h"
 
 void	ft_print_grid(char **grid, int size)
 {
@@ -22,7 +22,6 @@ void	ft_print_grid(char **grid, int size)
 		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
 	}
-
 }
 
 void		erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
@@ -75,7 +74,7 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 	}
 	nb_piece = 0;
 	bgrid->rejet = elem;
-	while(nb_piece != 4 && i < bgrid->size)
+	while (nb_piece != 4 && i < bgrid->size)
 	{
 		j = (i > elem->xgrid) ? 0 : j;
 		while (nb_piece != 4 && j < bgrid->size && (nb_piece = 0) == 0)
@@ -133,9 +132,7 @@ char	**generate_big_grid(t_shape **begin)
 	{
 		grid[i] = (char *)malloc(sizeof(char) * size_square(&elem, 0));
 		ft_memset(grid[i], '.', size_square(&elem, 0));
-		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
 	}
-	printf("===============\n");
 	return (grid);
 }
