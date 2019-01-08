@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 19:38:39 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:31:29 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ void	ft_grid_validity(int fd, t_shape **begin)
 	char		*grid[130];
 	t_check		nb;
 	char		form[4][2];
+	int			diff_height;
+	int			diff_width;
 
 	nb.i = 0;
 	ft_store_grid(fd, grid);
@@ -136,6 +138,10 @@ void	ft_grid_validity(int fd, t_shape **begin)
 		ft_check_fill(&grid[nb.i - 4], form);
 		if (!((follow_pcs(form, 0, &(nb.min_y), &(nb.max_y)) && follow_pcs(form, 1, &(nb.min_x), &(nb.max_x)) && adjacent_pcs(form))))
 			exit(EXIT_FAILURE);
+//		printf("max_x : %d\n", nb.max_x);
+//		printf("max_y : %d\n", nb.max_y);
+//		printf("min_x : %d\n", nb.min_x);
+//		printf("min_y : %d\n", nb.min_y);
 		ft_add_end(begin, ft_new(form, &nb));
 		if ((nb.hash = 0) == 0 && grid[nb.i])
 			nb.i++;
