@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:14:36 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 17:43:13 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 18:01:51 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILLIT_H
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 # include "get_next_line.h"
 # include "libft/includes/libft.h"
 

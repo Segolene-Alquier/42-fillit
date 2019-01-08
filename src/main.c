@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:56 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 17:57:42 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 18:03:05 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	**generate_big_grid(t_shape **begin)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	t_shape	*begin;
 	t_grid	bgrid;
 
 	if (argc != 2)
