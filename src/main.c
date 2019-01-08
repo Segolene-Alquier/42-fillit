@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:56 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 15:35:48 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:59:30 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	if (!((fd = open(argv[1], O_RDONLY)) > 0))
 		return (1);
 	ft_bzero(&bgrid, sizeof(bgrid));
-	ft_grid_validity(fd, &(bgrid.begin));   //maybe begin should be a **
+	ft_grid_validity(fd, &(bgrid.begin));
 	bgrid.grid = generate_big_grid(&(bgrid.begin));
 	bgrid.size = size_square(&(bgrid.begin), 1);
 	fillit_baby(&bgrid, bgrid.begin, ft_lst_size(&(bgrid.begin)));
