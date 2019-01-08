@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 20:17:06 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:39:43 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void		find_erase(t_grid *bgrid)
 
 	i = bgrid->size;
 	j = bgrid->size;
-	printf("%d %d\n", i,j);
 	while (i-- > 0 && (j = bgrid->size - 1) > 0)
 		while (j-- > 0)
 			if (bgrid->grid[i][j] == bgrid->rejet->letter)

@@ -6,24 +6,11 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:09 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 20:30:00 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:42:24 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fillit.h"
-
-void	ft_print_grid(char **grid, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		printf("grid[%d] : %s\n", i, grid[i]);
-		i++;
-	}
-
-}
 
 void		erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
 {
@@ -32,19 +19,11 @@ void		erase(int undex, int deudex, t_grid *bgrid, int nb_piece)
 	int i;
 
 	i = 0;
-/*	system("clear");
-	printf("erase %d %d %d\n",undex, deudex, nb_piece);*/
-//	ft_print_grid(bgrid->grid, bgrid->size);
-//	usleep(200000);
 	while (i < nb_piece)
 	{
 		x = bgrid->rejet->form[i][0];
 		y = bgrid->rejet->form[i][1];
 		bgrid->grid[undex + x][deudex + y] = '.';
-//	system("clear");
-//		printf("%d %d\n",undex, deudex);
-//		ft_print_grid(bgrid->grid, bgrid->size);
-//		usleep(200000);
 		i++;
 	}
 }
@@ -81,8 +60,6 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 			}
 		}
 	}
-	printf("i : %d\n",i);
-//	sleep(1);
 	nb_piece = 0;
 	bgrid->rejet = elem;
 	while(nb_piece != 4 && i < bgrid->size)
@@ -97,7 +74,6 @@ int		place_piece(t_grid *bgrid, t_shape *elem)
 					y = elem->form[nb_piece][1];
 					if (bgrid->grid[i + x][j + y] == '.' && i + x >= 0 && i + x < bgrid->size && j + y >= 0 && j + y < bgrid->size)
 					{
-						printf("%d %d\n", i + x, j + y);
 						bgrid->grid[i + x][j + y] = elem->letter;
 						nb_piece++;
 //					system("clear");
@@ -148,9 +124,7 @@ char	**generate_big_grid(t_shape **begin)
 	{
 		grid[i] = (char *)malloc(sizeof(char) * size_square(&elem, 0));
 		ft_memset(grid[i], '.', size_square(&elem, 0));
-		printf("grid[%d] : %s\n", i, grid[i]);
 		i++;
 	}
-	printf("===============\n");
 	return (grid);
 }

@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 15:10:31 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/07 19:05:03 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:37:08 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_letter	*ft_new_letter(char c)
 {
 	t_letter *new;
 	if ((new = (t_letter*)malloc(sizeof(t_letter))) == NULL)
-		exit(EXIT_FAILURE);
+		error();
 	new->letter = c;
 	new->next = NULL;
 	return (new);
