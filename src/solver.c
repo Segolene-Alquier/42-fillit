@@ -6,11 +6,12 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 14:06:07 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:36:38 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 int		size_square(t_shape **lst, int boolean)
 {
@@ -67,5 +68,11 @@ void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 		else if ((index = give_me_a_letter(index, tab, &head, bgrid)) > -2)
 			if (bgrid->ret == 0)
 				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
+
+			//system("clear");
+			//write(1, tab, size_l);
+			//printf("\n");
+			//ft_print_grid(bgrid->grid, bgrid->size);
+			//usleep(100);
 	}
 }
