@@ -6,31 +6,11 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 16:32:22 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 15:02:20 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:25:48 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	error()
-{
-	int i;
-	char *str;
-
-	i = 0;
-	str = "error\n";
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-	exit(EXIT_FAILURE);
-}
 
 int		ft_power_2(int nb)
 {
