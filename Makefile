@@ -6,7 +6,7 @@
 #    By: salquier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 17:00:28 by salquier          #+#    #+#              #
-#    Updated: 2019/01/09 13:29:39 by salquier         ###   ########.fr        #
+#    Updated: 2019/01/09 15:22:58 by salquier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = fillit
 
 SRCDIR = src/
 
-SRC = $(SRCDIR)main.c $(SRCDIR)check.c $(SRCDIR)fillit.c $(SRCDIR)gest_letter.c $(SRCDIR)list.c $(SRCDIR)list2.c $(SRCDIR)print.c $(SRCDIR)solver.c \
+SRC = $(SRCDIR)main.c $(SRCDIR)check.c $(SRCDIR)fillit.c $(SRCDIR)gest_letter.c\
+	  $(SRCDIR)list.c $(SRCDIR)list2.c $(SRCDIR)print.c $(SRCDIR)solver.c \
 	  $(SRCDIR)utils.c $(SRCDIR)get_next_line.c
 
 CFLAGS = -Wall -Wextra -Werror
@@ -26,9 +27,12 @@ OBJECTS = $(SRC:.c=.o)
 $(SRCDIR)%.o: $(SRCDIR)%.c
 	gcc -o $@ -c -g -O  $? $(CFLAGS)
 
-all: $(NAME)
+all: $(NAME) 
 
-$(NAME): $(OBJECTS)
+libft:
+	$(MAKE) -C libft
+
+$(NAME): $(OBJECTS) libft
 	gcc -o $@ -g -O $(OBJECTS) -L libft/ -lft
 
 clean: $(OBJECTS)
