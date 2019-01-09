@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:16:56 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 17:35:46 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:54:04 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	ft_grid_validity(int fd, t_shape **begin)
 		if ((nb.hash = 0) == 0 && grid[nb.i])
 			nb.i++;
 	}
-	nb.i = -1;
-	while (grid[++nb.i])
-	free(grid[nb.i]);
+	ft_free_gnl(grid);
 }
 
 char	**generate_big_grid(t_shape **begin)
@@ -67,7 +65,7 @@ void	ft_free_shape(t_shape **head)
 {
 	t_shape *tmp;
 
-	while(*head)
+	while (*head)
 	{
 		tmp = *head;
 		*head = (*head)->next;
