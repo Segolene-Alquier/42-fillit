@@ -6,7 +6,7 @@
 #    By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:19:42 by bafraiki          #+#    #+#              #
-#    Updated: 2019/01/09 17:03:03 by bafraiki         ###   ########.fr        #
+#    Updated: 2019/01/09 17:44:57 by bafraiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 	ar rcs $@ $^
 
 %.o: %.c
-	$(CC) -I $(INCLUDE) -o $@ -c -g -O $? $(FLAGS)
+	$(CC) -I $(INCLUDE) -o $@ -c $? $(FLAGS)
 
 clean: $(OBJ)
 	rm $(OBJ)

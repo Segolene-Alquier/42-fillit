@@ -6,7 +6,7 @@
 #    By: salquier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 17:00:28 by salquier          #+#    #+#              #
-#    Updated: 2019/01/09 16:05:59 by bafraiki         ###   ########.fr        #
+#    Updated: 2019/01/09 17:44:27 by bafraiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJECTS = $(SRC:.c=.o)
 .PHONY : all clean fclean re
 
 $(SRCDIR)%.o: $(SRCDIR)%.c
-	gcc -o $@ -c -g -O  $? $(CFLAGS)
+	gcc -o $@ -c $? $(CFLAGS)
 
 all: $(NAME) 
 
