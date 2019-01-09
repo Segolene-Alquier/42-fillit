@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/08 21:09:41 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/09 13:26:31 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,16 @@ void	find_erase(t_grid *bgrid)
 
 char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
 {
-	//char letter;
-
-	if (!(bgrid->rejet) && (tab[index] = (*head)->letter) != 0
-			&& (remove_letter(head, tab[index]) == tab[index]))
+	if (!(bgrid->rejet) && (tab[index] = (*head)->letter) != 0 
+			&& remove_letter(head, tab[index]) == tab[index])
 		return (index);
 	else if (bgrid->rejet->xgrid == -1 && bgrid->rejet->ygrid == -1)
 	{
 		add_new_letter(head, bgrid->rejet->letter);
-		//letter = there_is_highest(*head, tab[index]);
-		//if (tab[index] < letter && remove_letter(head, letter) == letter
-		//		&& (tab[index] = letter) == letter)
-		//	return (index);
-		/*else*/ if (index > 0 && (tab[index] = '.') == '.'
-		&& (bgrid->rejet = find_elem(bgrid->begin, tab[index - 1])) != NULL)
+		if (index > 0 && (tab[index] = '.') == '.'
+				&& (bgrid->rejet = find_elem(bgrid->begin, tab[index - 1])) != NULL)
 			return (give_me_a_letter(index - 1, tab, head, bgrid));
-		tab[index] = '.';
+		tab[0] = '.';
 		(bgrid->size)++;
 		bgrid->ret = 1;
 		return (-1);
