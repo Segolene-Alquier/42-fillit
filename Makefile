@@ -6,7 +6,7 @@
 #    By: salquier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 17:00:28 by salquier          #+#    #+#              #
-#    Updated: 2019/01/08 18:50:21 by bafraiki         ###   ########.fr        #
+#    Updated: 2019/01/09 15:40:23 by bafraiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,24 @@ OBJECTS = $(SRC:.c=.o)
 $(SRCDIR)%.o: $(SRCDIR)%.c
 	gcc -o $@ -c $? $(CFLAGS)
 
+./libft/libft.a:
+	make -C libft/
+
+LIBCLEAN:
+	make clean -C libft/
+
+LIBFCLEAN:
+	make fclean -C libft/
+
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) ./libft/libft.a
 	gcc -o $@ $(OBJECTS) -L libft/ -lft
 
-clean: $(OBJECTS)
+clean: $(OBJECTS) LIBFCLEAN
 	rm $(OBJECTS)
 
-fclean: all clean
+fclean: all clean LIBFCLEAN
 	rm $(NAME)
 
 re: fclean
