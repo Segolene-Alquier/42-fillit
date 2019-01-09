@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 15:04:03 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:09:44 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int		size_square(t_shape **lst, int boolean)
 	return (elem->width);
 }
 
+void	ft_print_ls(t_letter *head)
+{
+	while (head)
+	{
+		ft_putchar(head->letter);
+		head = head->next;
+	}
+	write(1, "\n", 1);
+}
+
 void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 {
 	int			index;
@@ -50,7 +60,7 @@ void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 
 	head = NULL;
 	if (!(tab = (char *)malloc(sizeof(char) * (size_l + 1))))
-		exit(EXIT_FAILURE);
+		error();
 	ft_build_utils(tab, &head, size_l);
 	index = -1;
 	bgrid->ret = 1;

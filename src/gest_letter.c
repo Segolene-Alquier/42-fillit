@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 15:03:43 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:11:22 by salquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
 		else if (index > 0 && (tab[index] = '.') == '.'
 		&& (bgrid->rejet = find_elem(bgrid->begin, tab[index - 1])) != NULL)
 			return (give_me_a_letter(index - 1, tab, head, bgrid));
-		tab[index] = '.';
+		tab[0] = '.';
 		(bgrid->size)++;
 		bgrid->ret = 1;
 		return (-1);
