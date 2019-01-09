@@ -6,11 +6,12 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 15:00:47 by bafraiki         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:04:03 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 int		size_square(t_shape **lst, int boolean)
 {
