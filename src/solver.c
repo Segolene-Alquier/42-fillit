@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:25:15 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 15:09:44 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:35:07 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,6 @@ int		size_square(t_shape **lst, int boolean)
 	return (elem->width);
 }
 
-void	ft_print_ls(t_letter *head)
-{
-	while (head)
-	{
-		ft_putchar(head->letter);
-		head = head->next;
-	}
-	write(1, "\n", 1);
-}
 
 void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 {
@@ -66,17 +57,14 @@ void	fillit_baby(t_grid *bgrid, t_shape *begin, int size_l)
 	bgrid->ret = 1;
 	while (index <= size_l - 1 || bgrid->ret == 0)
 	{
-		if (bgrid->ret)
+		if (bgrid->ret && ++index >= 0)
 		{
-			index++;
-			if (index <= size_l - 1)
-			{
-				index = give_me_a_letter(index, tab, &head, bgrid);
+			if (index <= size_l - 1 && (index = give_me_a_letter(index, tab, &head, bgrid)) > -2)
 				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
-			}
 		}
 		else if ((index = give_me_a_letter(index, tab, &head, bgrid)) > -2)
 			if (bgrid->ret == 0)
 				bgrid->ret = place_piece(bgrid, find_elem(begin, tab[index]));
 	}
+	free(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: bafraiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:17:16 by bafraiki          #+#    #+#             */
-/*   Updated: 2019/01/09 15:11:22 by salquier         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:53:08 by bafraiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,6 @@ void	ft_build_utils(char *tab, t_letter **begin, int size)
 		add_new_letter(begin, 'A' + size);
 		tab[size] = '.';
 	}
-}
-
-int		there_is_highest(t_letter *begin, char c)
-{
-	t_letter *elem;
-
-	elem = begin;
-	while (elem)
-		if (elem->letter > c)
-			return (elem->letter);
-		else
-			elem = elem->next;
-	return (0);
-}
-
-void	find_erase(t_grid *bgrid)
-{
-	int		i;
-	int		j;
-
-	i = bgrid->size;
-	j = bgrid->size;
-	while (i-- > 0 && (j = bgrid->size - 1) > 0)
-		while (j-- > 0)
-			if (bgrid->grid[i][j] == bgrid->rejet->letter)
-				erase(i, j, bgrid, 4);
 }
 
 char	give_me_a_letter(int index, char *tab, t_letter **head, t_grid *bgrid)
